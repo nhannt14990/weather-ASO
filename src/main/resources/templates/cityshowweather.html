@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Weather</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../static/css/materialize.min.css" th:href="@{/css/materialize.min.css}" rel="stylesheet" media="screen"/>
+    <link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+
+<ul>
+       <a href="#" th:href="@{/}">Back </a>
+</ul>
+<!-- IF call api fail -->
+<div th:if="${message}">
+  	<div>Get Weather from API Fail!</div>
+</div>
+<!-- ELSE -->
+<div th:unless="${message}">   
+   <div class="container" th:each="prod: ${weathers}">
+      	<div class="row row-main" >
+			<div class="col-md-3">
+				<img th:src="@{'http://openweathermap.org/img/w/'+${prod.weatherIcon}+'.png'}" ></img>
+			</div>
+			<div class="col-md-3">
+				<div th:text="${prod.nameCity}"></div>
+				<div th:text="${prod.timeStamp}"></div>				
+			</div>
+			<div class="col-md-3">
+				<div>
+					<span th:text="${prod.temperature}"></span>
+					<span th:text="${prod.weatherMain}"></span>
+				</div>
+			</div>
+		</div>
+		
+    </div>
+		<div class="row row-btn" >
+<!-- 			<div class="col-md-12" > -->
+<!-- 				<button type="button" class="btn btn-light" style="width:100%">Show more</button> -->
+<!-- 			</div> -->
+			
+			<div>
+				 <form th:action="${ '/listWeather/' + idCity}">
+					<div>
+					  <div>
+					  	<button type="submit" class="btn btn-light">Show more</button>
+					  </div>
+					</div>    
+				</form>
+			</div>
+		</div>
+</div>	
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Weather app</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../static/css/materialize.min.css" th:href="@{/css/materialize.min.css}" rel="stylesheet" media="screen"/>
+    <link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+
+<div class="container">
+		<ul>
+       		<a href="#" th:href="@{/}">Back </a>
+		</ul>
+		<div class="row" >
+			<div>
+				 <form th:action="@{/searchWeather}" th:object="${weather}" method="POST">
+					  <input type="text" th:field="*{nameCity}" placeholder="Search by city name..." aria-label="" aria-describedby="basic-addon2"/>
+					  <div>
+					  	<button type="submit" class="btn btn-light">Search</button>
+					  </div>
+				</form>
+			</div>
+		</div>
+		
+		<div th:if="${not #lists.isEmpty(weathers)}">
+<!-- 	        <h2>List Weather</h2> -->
+	        <div class="container" th:each="prod: ${weathers}">
+	      		<div class="row row-main" >
+					<div class="col-md-3">
+						<img th:src="@{'http://openweathermap.org/img/w/'+${prod.weatherIcon}+'.png'}" ></img>
+					</div>
+					<div class="col-md-3">
+						<div th:text="${prod.nameCity}"></div>
+						<div th:text="${prod.timeStamp}"></div>				
+					</div>
+					<div class="col-md-3">
+						<div>
+							<span th:text="${prod.temperature}"></span>
+							<span th:text="${prod.weatherMain}"></span>
+						</div>
+					</div>
+				</div>
+			
+	    	</div>
+        </div>
+</div>
+
+</body>
+</html>

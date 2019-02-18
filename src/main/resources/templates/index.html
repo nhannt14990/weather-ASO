@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Weather app</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../static/css/materialize.min.css" th:href="@{/css/materialize.min.css}" rel="stylesheet" media="screen"/>
+    <link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+
+<div class="container">
+       <div class="row" >
+			<div>
+				 <form th:action="@{/search}" th:object="${city}" method="POST">
+					<div>
+					  <input type="text" th:field="*{cityName}" placeholder="Search by city name..." aria-label="" aria-describedby="basic-addon2"/>
+					  <div>
+					  	<button type="submit" class="btn btn-light">Search</button>
+					  </div>
+					</div>    
+				</form>
+			</div>
+			
+			<ul class="right hide-on-med-and-down">
+                 <a href="#" th:href="@{/city/new}">Add new city</a>
+                 <a class="aclass" href="#" th:href="@{/weatherForm}">Search Weather</a>
+            </ul>
+		</div>
+		
+    <div th:if="${not #lists.isEmpty(cities)}">
+        <h2>List City</h2>
+  
+		
+        <table class="table table-striped">            
+            <tr>
+                <th>City Id</th>
+                <th>City Name</th>
+                <th>API get weather</th>
+                <th>#</th>
+            </tr>
+            <tr th:each="city : ${cities}">
+                <td th:text="${city.getIdCity()}"> </td>
+                <td th:text="${city.getCityName()}"> </td>
+                <td><a th:href="${ '/weather/' + city.idCity}">Weather</a></td>
+                <td><a th:href="${'/city/delete/' + city.idCity}">Delete</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>

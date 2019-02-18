@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <title>Add City</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../static/css/materialize.min.css" th:href="@{/css/materialize.min.css}" rel="stylesheet" media="screen"/>
+    <link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" media="screen"/>
+   </head>
+    
+   <body>             
+      <h2>Add City</h2>
+       
+      <form th:action="@{/addCity}" th:object="${city}" method="POST">
+    		<input type="text" th:field="*{cityName}" placeholder="City Name.."></input>
+		  	<button type="submit" class="btn btn-light">Save</button>
+      </form>
+       
+   </body>
+</html>
