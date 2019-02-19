@@ -80,5 +80,10 @@ public class WeatherSeriveImpl implements WeatherService{
 	public Iterable<Weather> listAllWeathers() {
 		return weatherRepository.findAll();
 	}
+	@Override
+	public void deleteWeather(Weather weather) {
+		weatherRepository.delete(weather);
+		
+	}
 
 }

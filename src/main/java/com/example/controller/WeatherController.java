@@ -24,7 +24,7 @@ public class WeatherController {
 	private WeatherService weatherService;
 
 	@Autowired
-	public void setCityService(CityService cityService, WeatherService weatherService) {
+	public void setWeatherService(CityService cityService, WeatherService weatherService) {
 		this.cityService = cityService;
 		this.weatherService = weatherService;
 	}

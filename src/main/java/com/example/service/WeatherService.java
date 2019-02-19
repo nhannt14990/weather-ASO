@@ -15,5 +15,7 @@ public interface WeatherService {
     Weather saveWeather(Weather weather);
 
     WeatherDTO getWeather(String city);
+    
+    void deleteWeather(Weather weather);
 
 }
